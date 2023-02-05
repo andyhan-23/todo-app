@@ -1,4 +1,4 @@
-# 일정 관리 웹 어플리케이션
+# 일정 관리/메모장 웹 어플리케이션
 
 ## UI구성하기
 
@@ -21,5 +21,8 @@
 todos배열을 props로 받아 온 후, 이를 배열 내장 함수 map을 사용해서 여러 개의 TodoListItem 컴포넌트로 변환하여 보여 줍니다.
 
 
-## 구현화면
+## 구현화면(1)
 <img width="860" alt="스크린샷 2023-02-05 오전 11 30 28" src="https://user-images.githubusercontent.com/98483125/216798452-9c8dd848-1af4-48e8-a824-99e5c80f5b30.png">
+
+## 구현화면(2)
+<img width="775" alt="스크린샷 2023-02-05 오후 5 59 53" src="https://user-images.githubusercontent.com/98483125/216810346-e1df0c94-eaf9-421b-8d72-33f8ba9d8e24.png">
