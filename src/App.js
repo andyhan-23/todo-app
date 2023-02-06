@@ -5,7 +5,20 @@ import TodoList from "./components/TodoList";
 import MemoTemplate from "./components/MemoTemplate";
 import MemoInsert from "./components/MemoInsert";
 import MemoList from "./components/MemoList";
+
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i <= 2500; i++) {
+    array.push({
+      id: i,
+      text: `할 일 ${i}`,
+      checked: false,
+    });
+  }
+  return array;
+}
 const App = () => {
+  /*
   const [todos, setTodos] = useState([
     {
       id: 1,
@@ -23,7 +36,8 @@ const App = () => {
       checked: false,
     },
   ]);
-
+*/
+  const [todos, setTodos] = useState(createBulkTodos);
   const [memos, setMemos] = useState([
     {
       id: 1,
@@ -46,18 +60,15 @@ const App = () => {
   //ref를 사용하여 변수 담기
   const nextId = useRef(4);
 
-  const onInsert = useCallback(
-    (text) => {
-      const todo = {
-        id: nextId.current,
-        text,
-        checked: false,
-      };
-      setTodos(todos.concat(todo));
-      nextId.current += 1; //nextId 1씩 더하기
-    },
-    [todos]
-  );
+  const onInsert = useCallback((text) => {
+    const todo = {
+      id: nextId.current,
+      text,
+      checked: false,
+    };
+    setTodos((todos) => todos.concat(todo));
+    nextId.current += 1; //nextId 1씩 더하기
+  }, []);
 
   const Add = useCallback(
     (write) => {
@@ -72,12 +83,9 @@ const App = () => {
     [memos]
   );
 
-  const onRemove = useCallback(
-    (id) => {
-      setTodos(todos.filter((todo) => todo.id !== id));
-    },
-    [todos]
-  );
+  const onRemove = useCallback((id) => {
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
+  }, []);
 
   const Delete = useCallback(
     (id) => {
@@ -86,16 +94,14 @@ const App = () => {
     [memos]
   );
 
-  const onToggle = useCallback(
-    (id) => {
-      setTodos(
-        todos.map((todo) =>
-          todo.id === id ? { ...todo, checked: !todo.checked } : todo
-        )
-      );
-    },
-    [todos]
-  );
+  const onToggle = useCallback((id) => {
+    setTodos((todos) =>
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo
+      )
+    );
+  }, []);
+
   const Notice = useCallback(
     (id) => {
       setMemos(
